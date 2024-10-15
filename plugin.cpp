@@ -58,13 +58,29 @@ void LoopThruAllFormsOfType() {
         }
 }
 
+void PrintMagicItem() {
+    // Print out all Alchemy items, e.g. potions/food, which are food and contain "soup" in the name
+    auto items = RE::TESDataHandler::GetSingleton()->GetFormArray<RE::MagicItem>();
+    logger::info("Magic items size : {}", items.size());
+    for (auto* item : items) {
+        if (item->IsMagicItem()) {
+            auto name = std::string(item->GetName());
+            ConvertToLowerCase(name);
+            logger::info("This is Magic Item Name : {}", name);
+        }
+    }
+        
+}
+
 void LoopThruAllForms() {
     // Print out anything that costs over 5000 gold
     const auto& [literallyEveryFormInTheGame, lock] = RE::TESForm::GetAllForms();
     for (auto& [id, form] : *literallyEveryFormInTheGame) {
         if (form->IsArmor())
-            if (form->GetGoldValue() > 5000)
+            if (form->GetGoldValue() > 5000) {
                 logger::info("Whoa! {} is expensive! It costs {}", form->GetName(), form->GetGoldValue());
+            }
+                
     }
 }
 
@@ -82,18 +98,23 @@ void LoopThruHodReferences() {
 }
 
 void OnFormsAvailable() {
-    GetFormByID();
+    /*GetFormByID();
     GetFormByEditorID_IncludesFormCasting();
     LoopThruAllFormsOfType();
-    LoopThruAllForms();
+    LoopThruAllForms();*/
     LoopThruHodReferences();
+    PrintMagicItem();
 }
 
 SKSEPluginLoad(const SKSE::LoadInterface* skse) {
     SKSE::Init(skse);
     SetupLog();
     SKSE::GetMessagingInterface()->RegisterListener([](SKSE::MessagingInterface::Message* message) {
-        if (message->type == SKSE::MessagingInterface::kDataLoaded) OnFormsAvailable();
+        if (message->type == SKSE::MessagingInterface::kDataLoaded) {
+            RE::ConsoleLog::GetSingleton()->Print("PlayingWithForm Mod Loaded");
+            OnFormsAvailable();
+        }
+     
     });
     return true;
 }
