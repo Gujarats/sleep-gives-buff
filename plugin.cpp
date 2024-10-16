@@ -1,6 +1,7 @@
 #include <spdlog/sinks/basic_file_sink.h>
 #include <algorithm>
 #include "Events.h"
+#include "FormLoader.h"
 
 
 namespace logger = SKSE::log;
@@ -66,6 +67,10 @@ SKSEPluginLoad(const SKSE::LoadInterface* skse) {
     logger::info("{} {} loading...", plugin->GetName(), version);
 
     SKSE::Init(skse);
+    /**
+     * init global variable for utility
+     */
+    FormLoader::GetSingleton()->CacheGameAddresses(); 
 
     auto messaging = SKSE::GetMessagingInterface();
     if (!messaging->RegisterListener(InitListener)) {
