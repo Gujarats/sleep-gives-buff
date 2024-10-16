@@ -1,6 +1,5 @@
 #pragma once
-
-namespace logger = SKSE::log;
+#include "Utility.h"
 
 namespace Events
 {
@@ -16,12 +15,15 @@ namespace Events
 		RE::BSEventNotifyControl ProcessEvent(const RE::TESSleepStopEvent* a_event, RE::BSTEventSource<RE::TESSleepStopEvent>*) override
 		{
 			if (!a_event) {
-				logger::info("invalid event found");
+				//SKSE::log::info("invalid event found");
 				return RE::BSEventNotifyControl::kContinue;
 			}
 
-			//ProcessSleepStopEvent();
-			logger::info("player has awaken from sleep");
+			//SKSE::log::info("player has awaken from sleep");
+			auto player = Utility::GetPlayer();
+			RE::SpellItem* healingSpell = RE::TESForm::LookupByID(RE::FormID(0x00012FCC))->As<RE::SpellItem>();
+			player->AddSpell(healingSpell);
+			//SKSE::log::info("player has been given new effect");
 
 			return RE::BSEventNotifyControl::kContinue;
 		}
