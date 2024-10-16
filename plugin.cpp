@@ -20,14 +20,40 @@ void SetupLog() {
     spdlog::flush_on(spdlog::level::info);
 }
 
+void GetAlchemyInfo(){
+  /*  logger::info("Starting to get alchemy information");
+    RE::SpellItem WellRested =  RE::TESForm::LookupByID(RE::FormID(0x000FB984))->As<RE::SpellItem>();
+    logger::info("Form Name: {}", WellRested->GetSpellType());*/
+}
+
+void GetSpellData() {
+    auto someSpell = RE::TESForm::LookupByID(RE::FormID(0x0001CEA6));
+    // logger::info("This is the Spell Name : {}",someSpell->GetFormDetailedString());
+    logger::info("This is the Spell Type : {}", someSpell->GetFormType());
+    logger::info("This is the Spell Name : {}", someSpell->GetName());
+
+    // well rested
+    auto wellRested = RE::TESForm::LookupByID(RE::FormID(0x000FB984))->As<RE::SpellItem>();
+    logger::info("This is well rested type :{}",wellRested->GetFormType());
+    logger::info("This is well rested name :{}", wellRested->GetName());
+
+    // healing spell
+    auto healingSpell = RE::TESForm::LookupByID(RE::FormID(0x00012FCC));
+    logger::info("This is healing  type :{}", healingSpell->GetFormType());
+    logger::info("This is healing name :{}", healingSpell->GetName());
+}
+
 void InitListener(SKSE::MessagingInterface::Message* a_msg)
 {
 	switch (a_msg->type) {
 	case SKSE::MessagingInterface::kDataLoaded:
         Events::Register();
+        GetSpellData();
 		break;
 	}
 }
+
+
 
 SKSEPluginLoad(const SKSE::LoadInterface* skse) {
     SKSE::Init(skse);
