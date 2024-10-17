@@ -1,7 +1,7 @@
 #include <spdlog/sinks/basic_file_sink.h>
 #include <algorithm>
 #include "Events.h"
-#include "FormLoader.h"
+#include "Settings/FormLoader.h"
 
 
 namespace logger = SKSE::log;
@@ -19,12 +19,6 @@ void SetupLog() {
     spdlog::set_default_logger(std::move(loggerPtr));
     spdlog::set_level(spdlog::level::trace);
     spdlog::flush_on(spdlog::level::info);
-}
-
-void GetAlchemyInfo(){
-  /*  logger::info("Starting to get alchemy information");
-    RE::SpellItem WellRested =  RE::TESForm::LookupByID(RE::FormID(0x000FB984))->As<RE::SpellItem>();
-    logger::info("Form Name: {}", WellRested->GetSpellType());*/
 }
 
 void GetSpellData() {
