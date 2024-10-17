@@ -15,6 +15,6 @@ Add 30 health (this is the same as 3 level increased)
 ## Add more Magic
 Add 30 magic
 
-#Credits
-Thanks to (mrowrpurr)[https://github.com/mrowrpurr] to help me learn and getting started in skyrim mod.
+# Credits
+Thanks to (mrowrpurr)[https://github.com/mrowrpurr] to help me learn and getting started making my own skyrim mod.
 The code is heavily inspired from (Survival-Mode-Improved-SKSE)[https://github.com/colinswrath/Survival-Mode-Improved-SKSE].

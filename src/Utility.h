@@ -2,7 +2,6 @@
 
 class Utility {
 public:
-    RE::SpellItem* Sleep_AwakeBUff;
     uintptr_t PlayerSingletonAddress;
 
     static Utility* GetSingleton() {

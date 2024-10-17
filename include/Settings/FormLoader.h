@@ -1,5 +1,4 @@
 #pragma once
-
 #include "Utility.h"
 #include "Buffs/Awake.h"
 
@@ -17,7 +16,7 @@ public:
         logger::info("load all SleepGivesBuffs started");
         /* The ID is using ability however the type is still SpellItem
         */
-        auto Awaken = Awake::GetSingleton()
+        auto Awaken              = Awake::GetSingleton();
         Awaken->HealthRegen = RE::TESForm::LookupByEditorID("SGBHealthRegenAbility")->As<RE::SpellItem>();
         Awaken->MagicRegen = RE::TESForm::LookupByEditorID("SGBMagicRegenAbility")->As<RE::SpellItem>();
         Awaken->StaminaIncreased = RE::TESForm::LookupByEditorID("SGBStaminaIncreasedAbility")->As<RE::SpellItem>();
