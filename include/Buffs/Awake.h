@@ -23,6 +23,6 @@ public:
         Utility::GetPlayer()->AddSpell(MagicRegen);
         Utility::GetPlayer()->AddSpell(HealthIncreased);
         Utility::GetPlayer()->AddSpell(StaminaIncreased);
-        Utility::GetPlayer()->AddSpell(MagicIncreased);
+        //Utility::GetPlayer()->AddSpell(MagicIncreased);
     } 
 };
