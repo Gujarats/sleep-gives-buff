@@ -1,5 +1,6 @@
 #pragma once
-#include "Utility.h"
+
+include "Buffs/Awake.h"
 
 namespace logger = SKSE::log;
 
@@ -22,10 +23,11 @@ namespace Events
 			}
 
 			logger::info("player has awaken from sleep");
-			auto player = Utility::GetPlayer();
-			
-            auto SGBRegen = RE::TESForm::LookupByEditorID("SGBHealthRegenate");
-            player->AddSpell(SGBRegen->As<RE::SpellItem>());
+			// auto player = Utility::GetPlayer();
+            // auto SGBRegen = RE::TESForm::LookupByEditorID("SGBHealthRegenate");
+            // player->AddSpell(SGBRegen->As<RE::SpellItem>());
+			auto awake = Awake::GetSingleton();
+			awake->GiveBuffs();
             logger::info("player has been given new effect");
 
 			return RE::BSEventNotifyControl::kContinue;
