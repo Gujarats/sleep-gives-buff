@@ -1,6 +1,6 @@
 {
     "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg/master/scripts/vcpkg.schema.json",
-    "name": "hello-world",
+    "name": "sleep-gives-buff",
     "version-string": "0.0.1",
     "dependencies": [
         "commonlibsse-ng"
