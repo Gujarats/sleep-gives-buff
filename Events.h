@@ -23,8 +23,9 @@ namespace Events
 
 			logger::info("player has awaken from sleep");
 			auto player = Utility::GetPlayer();
-			RE::SpellItem* healingSpell = RE::TESForm::LookupByID(RE::FormID(0x00012FCC))->As<RE::SpellItem>();
-			player->AddSpell(healingSpell);
+			
+            auto SGBRegen = RE::TESForm::LookupByEditorID("SGBHealthRegenate");
+            player->AddSpell(SGBRegen->As<RE::SpellItem>());
             logger::info("player has been given new effect");
 
 			return RE::BSEventNotifyControl::kContinue;
