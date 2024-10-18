@@ -1,5 +1,3 @@
-#include <spdlog/sinks/basic_file_sink.h>
-#include <algorithm>
 #include "Events.h"
 #include "Settings/FormLoader.h"
 
@@ -52,7 +50,6 @@ SKSEPluginLoad(const SKSE::LoadInterface* skse) {
 
     const auto plugin{ SKSE::PluginDeclaration::GetSingleton() };
     const auto version{ plugin->GetVersion() };
-    auto runtimcompat = plugin->GetRuntimeCompatibility();
 
     logger::info("{} {} loading...", plugin->GetName(), version);
 
