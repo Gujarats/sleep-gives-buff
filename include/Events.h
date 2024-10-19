@@ -1,5 +1,6 @@
 #pragma once
 #include "Buffs/Awake.h"
+#include "Utility.h"
 
 namespace Events
 {
@@ -37,8 +38,45 @@ namespace Events
         }
     };
 
+    class WaitStopEventHandler : public RE::BSTEventSink<RE::TESWaitStopEvent>
+    {
+    public:
+        static WaitStopEventHandler* GetSingleton()
+        {
+            static WaitStopEventHandler singleton;
+            return &singleton;
+        }
+
+        RE::BSEventNotifyControl ProcessEvent(const RE::TESWaitStopEvent* a_event, RE::BSTEventSource<RE::TESWaitStopEvent>*) override
+        {
+            if(a_event->interrupted){
+                logger::info("[MENU] :: interrupted");
+            } else {
+                logger::info("[MENU] :: finish");
+            }
+
+            RE::BSSimpleList<RE::ActiveEffect*>* activeEffectList = Utility::GetPlayer()->AsMagicTarget()->GetActiveEffectList();
+         
+            for (RE::BSSimpleList<RE::ActiveEffect*>::iterator activeEffectIterator = activeEffectList->begin(); activeEffectIterator != activeEffectList->end();
+                 ++activeEffectIterator)
+            {
+                
+                logger::info("looping : activeEffect");
+            }
+            return RE::BSEventNotifyControl::kContinue;
+        }
+        
+
+        static void Register()
+        {
+            RE::ScriptEventSourceHolder* eventHolder = RE::ScriptEventSourceHolder::GetSingleton();
+            eventHolder->AddEventSink(WaitStopEventHandler::GetSingleton());
+        }
+    };
+
     inline static void Register()
     {
         OnSleepStopEventHandler::Register();
+        WaitStopEventHandler::Register();
     }
 }
