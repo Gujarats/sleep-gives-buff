@@ -60,8 +60,10 @@ namespace Events
             for (RE::BSSimpleList<RE::ActiveEffect*>::iterator activeEffectIterator = activeEffectList->begin(); activeEffectIterator != activeEffectList->end();
                  ++activeEffectIterator)
             {
-                
-                logger::info("looping : activeEffect");
+                RE::EffectSetting* es= (*activeEffectIterator)->GetBaseObject();
+                logger::info("looping : effect setting = {}",es->GetFullName());
+             
+
             }
             return RE::BSEventNotifyControl::kContinue;
         }
