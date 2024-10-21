@@ -61,8 +61,11 @@ namespace Events
                  ++activeEffectIterator)
             {
                 RE::EffectSetting* es= (*activeEffectIterator)->GetBaseObject();
-                logger::info("looping : effect setting = {}",es->GetFullName());
-             
+                RE::MagicItem*          mg       = (*activeEffectIterator)->spell;
+                const char*  fullname = mg->GetFullName();
+                //logger::info("looping : effect setting = {}",es->GetFullName());
+                //logger::info("spell getFullName = {}", fullname);
+                logger::info("spell = {}  active effect duration = {} , elapsed second = {}", fullname, (*activeEffectIterator)->duration, (*activeEffectIterator)->elapsedSeconds);
 
             }
             return RE::BSEventNotifyControl::kContinue;
