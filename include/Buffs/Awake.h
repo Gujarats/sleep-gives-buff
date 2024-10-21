@@ -1,7 +1,8 @@
 #pragma once
 #include "Utility.h"
 
-class Awake {
+class Awake
+{
 public:
     RE::SpellItem* HealthRegen;
     RE::SpellItem* MagicRegen;
@@ -12,15 +13,16 @@ public:
     std::mutex update_mutex;
 
     static Awake* GetSingleton()
-	{
-			static Awake singleton;
-			return &singleton;
-	}
+    {
+        static Awake singleton;
+        return &singleton;
+    }
 
-    void GiveBuffs(){
+    void GiveBuffs()
+    {
         Utility::GetPlayer()->AddSpell(MagicRegen);
         Utility::GetPlayer()->AddSpell(HealthIncreased);
         Utility::GetPlayer()->AddSpell(StaminaIncreased);
         Utility::GetPlayer()->AddSpell(MagicIncreased);
-    } 
+    }
 };

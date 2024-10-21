@@ -49,28 +49,27 @@ namespace Events
 
         RE::BSEventNotifyControl ProcessEvent(const RE::TESWaitStopEvent* a_event, RE::BSTEventSource<RE::TESWaitStopEvent>*) override
         {
-            if(a_event->interrupted){
+            if (a_event->interrupted) {
                 logger::info("[MENU] :: interrupted");
-            } else {
+            }
+            else {
                 logger::info("[MENU] :: finish");
             }
 
             RE::BSSimpleList<RE::ActiveEffect*>* activeEffectList = Utility::GetPlayer()->AsMagicTarget()->GetActiveEffectList();
-         
+
             for (RE::BSSimpleList<RE::ActiveEffect*>::iterator activeEffectIterator = activeEffectList->begin(); activeEffectIterator != activeEffectList->end();
                  ++activeEffectIterator)
             {
-                RE::EffectSetting* es= (*activeEffectIterator)->GetBaseObject();
-                RE::MagicItem*          mg       = (*activeEffectIterator)->spell;
-                const char*  fullname = mg->GetFullName();
-                //logger::info("looping : effect setting = {}",es->GetFullName());
-                //logger::info("spell getFullName = {}", fullname);
+                RE::EffectSetting* es       = (*activeEffectIterator)->GetBaseObject();
+                RE::MagicItem*     mg       = (*activeEffectIterator)->spell;
+                const char*        fullname = mg->GetFullName();
+                // logger::info("looping : effect setting = {}",es->GetFullName());
+                // logger::info("spell getFullName = {}", fullname);
                 logger::info("spell = {}  active effect duration = {} , elapsed second = {}", fullname, (*activeEffectIterator)->duration, (*activeEffectIterator)->elapsedSeconds);
-
             }
             return RE::BSEventNotifyControl::kContinue;
         }
-        
 
         static void Register()
         {
@@ -84,4 +83,4 @@ namespace Events
         OnSleepStopEventHandler::Register();
         WaitStopEventHandler::Register();
     }
-}
+} // namespace Events

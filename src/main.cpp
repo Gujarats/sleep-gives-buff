@@ -1,8 +1,8 @@
 #include "Events.h"
 #include "Settings/FormLoader.h"
 
-
-void SetupLog() {
+void SetupLog()
+{
     auto path{ SKSE::log::log_directory() };
     if (!path)
         stl::report_and_fail("Unable to lookup SKSE logs directory.");
@@ -25,12 +25,12 @@ void SetupLog() {
 
 void InitListener(SKSE::MessagingInterface::Message* a_msg)
 {
-	switch (a_msg->type) {
-	case SKSE::MessagingInterface::kDataLoaded:
+    switch (a_msg->type) {
+    case SKSE::MessagingInterface::kDataLoaded:
         FormLoader::GetSingleton()->LoadAllForms();
         Events::Register();
-		break;
-	}
+        break;
+    }
 }
 
 extern "C" DLLEXPORT constexpr auto SKSEPlugin_Version = []() {
@@ -44,7 +44,8 @@ extern "C" DLLEXPORT constexpr auto SKSEPlugin_Version = []() {
     return v;
 }();
 
-SKSEPluginLoad(const SKSE::LoadInterface* skse) {
+SKSEPluginLoad(const SKSE::LoadInterface* skse)
+{
     SKSE::Init(skse);
     SetupLog();
 
@@ -57,13 +58,14 @@ SKSEPluginLoad(const SKSE::LoadInterface* skse) {
     /**
      * init global variable for utility
      */
-    FormLoader::GetSingleton()->CacheGameAddresses(); 
+    FormLoader::GetSingleton()->CacheGameAddresses();
 
     auto messaging = SKSE::GetMessagingInterface();
     if (!messaging->RegisterListener(InitListener)) {
         logger::info("Plugin listener failed to register");
         return false;
-    }else {
+    }
+    else {
         logger::info("Plugin listener success to register");
     }
 
