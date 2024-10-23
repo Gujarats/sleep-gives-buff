@@ -1,6 +1,17 @@
 #include "Events.h"
 #include "Settings/FormLoader.h"
 
+void initTrueHUDAPI() {
+	/*auto val = ValhallaCombat::GetSingleton();
+	val->ersh_TrueHUD = reinterpret_cast<TRUEHUD_API::IVTrueHUD3*>(TRUEHUD_API::RequestPluginAPI(TRUEHUD_API::InterfaceVersion::V3));
+	if (val->ersh_TrueHUD) {
+		logger::info("Obtained TruehudAPI - {0:x}", (uintptr_t)val->ersh_TrueHUD);
+		settings::facts::TrueHudAPI_Obtained = true;
+	} else {
+		logger::info("TrueHUD API not found.");
+		settings::facts::TrueHudAPI_Obtained = false;
+	}*/
+}
 
 void SetupLog() {
     auto path{ SKSE::log::log_directory() };
