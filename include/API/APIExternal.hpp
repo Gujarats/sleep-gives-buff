@@ -11,20 +11,6 @@ public:
         static APIExternal singleton;
         return std::addressof(singleton);
     }
-
-    void successCallback(TRUEHUD_API::APIResult a_Res)
-    {
-        switch (a_Res) {
-        case TRUEHUD_API::APIResult::OK:
-            logger::info("TrueHUD : callbac result ok");
-        case TRUEHUD_API::APIResult::AlreadyGiven:
-            logger::info("TrueHUD: callbac result AlreadyGiven");
-            break;
-        case TRUEHUD_API::APIResult::AlreadyTaken:
-            logger::info("TrueHUD: callbac result Taken");
-            break;
-        }
-    }
     
     void createCustomeWidgetBar()
     {
@@ -33,20 +19,6 @@ public:
             logger::info("...aborted: TrueHUD API not acquired.");
             return;
         }
-        std::function<void(TRUEHUD_API::APIResult)> func = [](TRUEHUD_API::APIResult a_Res) {
-
-            switch (a_Res) {
-            case TRUEHUD_API::APIResult::OK:
-                logger::info("TrueHUD : callbac result ok");
-            case TRUEHUD_API::APIResult::AlreadyGiven:
-                logger::info("TrueHUD: callbac result AlreadyGiven");
-                break;
-            case TRUEHUD_API::APIResult::AlreadyTaken:
-                logger::info("TrueHUD: callbac result Taken");
-                break;
-            }
-
-          }; 
     
         ersh_TrueHUD->LoadCustomWidgets(SKSE::GetPluginHandle(), "somePath", [](TRUEHUD_API::APIResult a_Res) {
             switch (a_Res) {
