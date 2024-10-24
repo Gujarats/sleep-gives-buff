@@ -1,14 +1,16 @@
 {
     "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
     "name": "survival-mode-improved",
-    "version-semver": "1.5.0",
+    "version-semver": "1.6.0",
     "dependencies": [
       "fmt",
       "spdlog",
       "rapidcsv",
       "simpleini",
       "xbyak",
-      "clib-util"
+      "clib-util",
+      "directxtk", 
+      "rsm-binary-io"
     ],
     "license": "MIT",
     "vcpkg-configuration": {
@@ -19,4 +21,3 @@
       }
     }
   }
-  
