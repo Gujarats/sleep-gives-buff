@@ -1,6 +1,6 @@
 {
     "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
-    "name": "survival-mode-improved",
+    "name": "sleep-gives-buff",
     "version-semver": "1.6.0",
     "dependencies": [
       "fmt",

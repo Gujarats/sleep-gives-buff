@@ -3,10 +3,11 @@
 #include "API/APIExternal.hpp"
 
 void initTrueHUDAPI() {
-	auto val = APIExternal::GetSingleton();
-	val->ersh_TrueHUD = reinterpret_cast<TRUEHUD_API::IVTrueHUD4*>(TRUEHUD_API::RequestPluginAPI(TRUEHUD_API::InterfaceVersion::V4));
-	if (val->ersh_TrueHUD) {
-		logger::info("Obtained TruehudAPI - {0:x}", (uintptr_t)val->ersh_TrueHUD);	
+	auto apiExternal = APIExternal::GetSingleton();
+	apiExternal->ersh_TrueHUD = reinterpret_cast<TRUEHUD_API::IVTrueHUD4*>(TRUEHUD_API::RequestPluginAPI(TRUEHUD_API::InterfaceVersion::V4));
+	if (apiExternal->ersh_TrueHUD) {
+		logger::info("Obtained TruehudAPI - {0:x}", (uintptr_t)apiExternal->ersh_TrueHUD);
+        apiExternal->CustomWidgetLoad();
 	} else {
 		logger::info("TrueHUD API not found.");
 	}
@@ -42,6 +43,9 @@ void InitListener(SKSE::MessagingInterface::Message* a_msg)
         break;
     case SKSE::MessagingInterface::kPostLoad:
         initTrueHUDAPI();
+        break;
+    case SKSE::MessagingInterface::kPostLoadGame:
+        
 		break;
 	}
 }
