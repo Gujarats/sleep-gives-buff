@@ -66,6 +66,9 @@ void InitListener(SKSE::MessagingInterface::Message* a_msg)
 	}
 }
 
+/*
+It seems the version is already being exported not sure where
+*/
 //extern "C" DLLEXPORT constexpr auto SKSEPlugin_Version = []() {
 //    SKSE::PluginVersionData v{};
 //    v.PluginVersion(REL::Version{ Version::MAJOR, Version::MINOR, Version::PATCH, 0 });
