@@ -32,13 +32,5 @@ public:
                 break;
             }
         });
-    }
-
-
-    void CustomWidgetLoadStep2() {
-        std::string actionScript = "swf/Widgets/TrueHUD_InfoBar.as";
-        std::shared_ptr<WidgetBase> myWidget     = TRUEHUD_API::GetSingleton();
-
-         ersh_TrueHUD->AddWidget(SKSE::GetPluginHandle(), TRUEHUD_API::MyCustomWidgetType::SleepIndicator, 12345, actionScript, myWidget);
-    }    
+    } 
 };

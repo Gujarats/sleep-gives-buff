@@ -13,6 +13,21 @@ void initTrueHUDAPI() {
 	}
 }
 
+void DrawLineTest() {
+    auto apiExternal = APIExternal::GetSingleton();
+ 
+    // draw connected lines
+    RE::NiPoint3 start, end;
+    float         duration = 0.f;
+    uint32_t     color    = 0xFF0000FF;
+    float         thickness = 2.f;
+    
+    start = RE::NiPoint3(1.f,1.f,1.f);
+    end   = RE::NiPoint3(5.f, 5.f, 5.f);
+
+    apiExternal->ersh_TrueHUD->DrawLine(start, end, duration, color, thickness);
+}
+
 void SetupLog() {
     auto path{ SKSE::log::log_directory() };
     if (!path)
@@ -43,6 +58,7 @@ void InitListener(SKSE::MessagingInterface::Message* a_msg)
         break;
     case SKSE::MessagingInterface::kPostLoad:
         initTrueHUDAPI();
+        DrawLineTest();
         break;
     case SKSE::MessagingInterface::kPostLoadGame:
         
