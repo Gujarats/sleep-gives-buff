@@ -66,16 +66,16 @@ void InitListener(SKSE::MessagingInterface::Message* a_msg)
 	}
 }
 
-extern "C" DLLEXPORT constexpr auto SKSEPlugin_Version = []() {
-    SKSE::PluginVersionData v{};
-    v.PluginVersion(REL::Version{ Version::MAJOR, Version::MINOR, Version::PATCH, 0 });
-    v.PluginName("SleepGivesBuff"sv);
-    v.AuthorName("GujaratSantana"sv);
-    v.UsesAddressLibrary(true);
-    v.HasNoStructUse(true);
-    v.UsesStructsPost629(false);
-    return v;
-}();
+//extern "C" DLLEXPORT constexpr auto SKSEPlugin_Version = []() {
+//    SKSE::PluginVersionData v{};
+//    v.PluginVersion(REL::Version{ Version::MAJOR, Version::MINOR, Version::PATCH, 0 });
+//    v.PluginName("SleepGivesBuff"sv);
+//    v.AuthorName("GujaratSantana"sv);
+//    v.UsesAddressLibrary(true);
+//    v.HasNoStructUse(true);
+//    v.UsesStructsPost629(false);
+//    return v;
+//}();
 
 SKSEPluginLoad(const SKSE::LoadInterface* skse) {
     SKSE::Init(skse);
