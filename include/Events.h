@@ -1,6 +1,7 @@
 #pragma once
 #include "Buffs/Awake.h"
 #include "Utility.h"
+#include "API/APIExternal.hpp"
 
 namespace Events
 {
@@ -47,6 +48,33 @@ namespace Events
             return &singleton;
         }
 
+        void DrawLineTest()
+        {
+            auto apiExternal = APIExternal::GetSingleton();
+
+            // draw connected lines
+            RE::NiPoint3 start;
+            RE::NiPoint3 end;
+            float        duration  = 90000.f;
+            uint32_t     color     = 0xcc0808;
+            float        thickness = 10.f;
+
+            start =  RE::NiPoint3(10.f, 10.f, 10.f);
+            end   = RE::NiPoint3(100.f, 10.f, -10.f);
+            logger::info("TrueHUD : starting to draw line");
+            apiExternal->ersh_TrueHUD->DrawLine(start, end, duration, color, thickness);
+
+            RE::NiQuaternion rotation;
+            rotation.w = 10.f;
+            rotation.x = 0.f;
+            rotation.y = 0.f;
+            rotation.z = -100.f;
+            start = RE::NiPoint3(150.f, 150.f, 0.f);
+            end   = RE::NiPoint3(0.f, 0.f, -100.f);
+            logger::info("TrueHUD : starting to draw box");
+            apiExternal->ersh_TrueHUD->DrawBox(start, end, rotation, duration,color, thickness);
+        }
+
         RE::BSEventNotifyControl ProcessEvent(const RE::TESWaitStopEvent* a_event, RE::BSTEventSource<RE::TESWaitStopEvent>*) override
         {
             if(a_event->interrupted){
@@ -54,6 +82,8 @@ namespace Events
             } else {
                 logger::info("[MENU] :: finish");
             }
+
+            DrawLineTest();
 
             RE::BSSimpleList<RE::ActiveEffect*>* activeEffectList = Utility::GetPlayer()->AsMagicTarget()->GetActiveEffectList();
          
